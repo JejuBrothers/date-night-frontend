@@ -5,14 +5,16 @@ body {
   color: #333;
   font-family: 'Nunito';
 }
-a {
+s a {
   color: #333;
   text-decoration: none;
 }
+
 .content {
   max-width: 960px;
   margin: 0 auto;
 }
+
 nav {
   margin: 10px auto 80px;
   padding: 10px 0;
@@ -21,12 +23,15 @@ nav {
   align-items: flex-end;
   border-bottom: 1px solid #ddd;
 }
+
 nav a {
   margin-left: 12px;
 }
+
 nav .logo {
   margin-right: auto;
 }
+
 footer {
   display: block;
   text-align: center;
@@ -34,6 +39,13 @@ footer {
   margin-top: 60px;
   color: #777;
   border-top: 1px solid #eaeaea;
+}
+
+input {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
 }
 
 .not-found {

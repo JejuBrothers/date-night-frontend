@@ -1,8 +1,15 @@
+import Head from 'next/head';
+
 const Login = () => {
   return (
-    <div>
-      <h1>Login Page</h1>
-    </div>
+    <>
+      <Head>
+        <title>Date Night | Login</title>
+      </Head>
+      <div>
+        <h1>Login Page</h1>
+      </div>
+    </>
   );
 };
 
