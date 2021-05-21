@@ -1,64 +1,89 @@
-import { useState } from 'react';
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
+import { createAccount } from './api/account';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const Register = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
 
-  async function handleRegister() {
-    const registerInfo = {
-      username: username,
-      email: email,
-      password: password,
-    };
+  const onRegister = (accountInfo) => {
+    const res = createAccount(accountInfo);
+    console.log(res); //TODO: Handle error cases
+  };
 
-    const register = await fetch(`/auth/register`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(registerInfo),
-    });
-
-    //const registerResponse = await register.json();
-    //console.log(registerResponse);
-  }
   return (
     <>
       <Head>
         <title>Date Night | Sign Up</title>
       </Head>
-      <div>
-        <h1>Register Page</h1>
-        <form>
-          <input
-            type='text'
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-            placeholder='Username'
-          />
-          <br />
-          <input
-            type='email'
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            placeholder='Email'
-          />
-          <br />
-          <input
-            type='password'
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            placeholder='Password'
-          />
-          <br />
-          <button type='button' onClick={() => handleRegister()}>
-            Sign Up
-          </button>
-        </form>
+      <div className='a-form'>
+        <Row>
+          <Col md={{ span: 8, offset: 2 }}>
+            <h1>Create your account</h1>
+            <Form onSubmit={handleSubmit(onRegister)}>
+              <Form.Group controlId='formUsername'>
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                  type='text'
+                  placeholder='Enter username'
+                  {...register('username', {
+                    required: 'Required',
+                  })}
+                />
+                {errors?.username && (
+                  <Alert variant='info'>
+                    {errors.username.type === 'required' &&
+                      'Your username is required!'}
+                  </Alert>
+                )}
+              </Form.Group>
+              <br />
+              <Form.Group controlId='formEmail'>
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type='email'
+                  placeholder='Enter email'
+                  {...register('email', {
+                    required: 'Required',
+                  })}
+                />
+                {errors?.email && (
+                  <Alert variant='info'>
+                    {errors.email.type === 'required' &&
+                      'Your email is required!'}
+                  </Alert>
+                )}
+              </Form.Group>
+              <br />
+              <Form.Group controlId='formPassword'>
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type='password'
+                  placeholder='Enter password'
+                  {...register('password', {
+                    required: 'Required',
+                  })}
+                />
+                {errors?.password && (
+                  <Alert variant='info'>
+                    {errors.password.type === 'required' &&
+                      'Your password is required!'}
+                  </Alert>
+                )}
+              </Form.Group>
+              <br />
+              <Button variant='primary' type='submit'>
+                Sign up
+              </Button>
+            </Form>
+          </Col>
+        </Row>
       </div>
     </>
   );

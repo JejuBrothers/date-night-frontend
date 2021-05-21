@@ -56,3 +56,11 @@ input {
   color: #4979ff;
   text-decoration: underline;
 }
+
+.a-form form {
+  margin-bottom: 20px;
+}
+
+.a-form label {
+  font-size: 18px;
+}
