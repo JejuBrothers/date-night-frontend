@@ -1,8 +1,15 @@
+import Head from 'next/head';
+
 const About = () => {
   return (
-    <div>
-      <h1>About Page</h1>
-    </div>
+    <>
+      <Head>
+        <title>Date Night | About</title>
+      </Head>
+      <div>
+        <h1>About Page</h1>
+      </div>
+    </>
   );
 };
 
