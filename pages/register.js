@@ -2,7 +2,8 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
+
+import { Form, Row, Col, Button, Alert, Toast } from 'react-bootstrap';
 import { createAccount } from '../services/account';
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -36,6 +37,7 @@ const Register = () => {
         <Row>
           <Col md={{ span: 8, offset: 2 }}>
             <h1>Create your account</h1>
+            <br />
             <Form onSubmit={handleSubmit(onRegister)}>
               <Form.Group controlId='formUsername'>
                 <Form.Label>Username</Form.Label>

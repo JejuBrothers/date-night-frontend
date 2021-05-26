@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useContext } from 'react';
 
 const Navbar = () => {
   return (
@@ -13,6 +14,9 @@ const Navbar = () => {
       </div>
       <Link href='/'>
         <a>Home</a>
+      </Link>
+      <Link href='/account'>
+        <a>My Profile</a>
       </Link>
       <Link href='/about'>
         <a>About</a>

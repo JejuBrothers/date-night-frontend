@@ -1,12 +1,15 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
 import { loginAccount } from '../services/account';
+import { setCookie } from 'nookies';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
 const Login = () => {
+  const router = useRouter();
   const {
     register,
     formState: { errors },
@@ -14,8 +17,21 @@ const Login = () => {
   } = useForm();
 
   const onLogin = async (accountInfo) => {
-    const res = await loginAccount(accountInfo);
-    console.log(res); //TODO: Handle errorss
+    const login = await loginAccount(accountInfo);
+    console.log('api called');
+    if (login.hasOwnProperty('access_token')) {
+      //Set JWT into browser cookie
+      setCookie(null, 'jwt', login.access_token, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      });
+
+      //Temporary: Redirect user to his profile page after login
+      router.push('/account');
+    } else {
+      //TODO: Handle error cases
+      console.log('Error');
+    }
   };
 
   return (
@@ -27,20 +43,21 @@ const Login = () => {
         <Row>
           <Col md={{ span: 8, offset: 2 }}>
             <h1>Sign in to your account</h1>
+            <br />
             <Form onSubmit={handleSubmit(onLogin)}>
-              <Form.Group controlId='formEmail'>
-                <Form.Label>Email</Form.Label>
+              <Form.Group controlId='formUsername'>
+                <Form.Label>Username</Form.Label>
                 <Form.Control
-                  type='email'
-                  placeholder='Enter email'
-                  {...register('email', {
+                  type='text'
+                  placeholder='Enter username'
+                  {...register('username', {
                     required: 'Required',
                   })}
                 />
-                {errors?.email && (
+                {errors?.username && (
                   <Alert variant='info'>
-                    {errors.email.type === 'required' &&
-                      'Your email is required!'}
+                    {errors.username.type === 'required' &&
+                      'Your username is required!'}
                   </Alert>
                 )}
               </Form.Group>
