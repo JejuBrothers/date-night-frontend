@@ -1,20 +1,30 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
-import { createAccount } from './api/account';
+import { createAccount } from '../services/account';
+
 import 'bootstrap/dist/css/bootstrap.css';
 
 const Register = () => {
+  const router = useRouter();
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  const onRegister = (accountInfo) => {
-    const res = createAccount(accountInfo);
-    console.log(res); //TODO: Handle error cases
+  const onRegister = async (accountInfo) => {
+    const res = await createAccount(accountInfo);
+
+    if (res.hasOwnProperty('id')) {
+      console.log('Account successfully created');
+      router.push('/login');
+    } else {
+      //TODO: Handle error cases
+      console.log('Error');
+    }
   };
 
   return (
