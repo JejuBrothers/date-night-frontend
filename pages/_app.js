@@ -1,13 +1,17 @@
 import Router from 'next/router';
 import { parseCookies } from 'nookies';
-import Layout from '../components/Layout';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import { AuthContextProvider } from '../stores/authContext';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
+    <AuthContextProvider>
+      <Navbar />
       <Component {...pageProps} />
-    </Layout>
+      <Footer />
+    </AuthContextProvider>
   );
 }
 
@@ -22,19 +26,23 @@ function redirectUser(ctx, location) {
 
 MyApp.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {};
-  const jwt = parseCookies(ctx).jwt;
+  const userSession = parseCookies(ctx).userSession;
 
   if (Component.getInitialProps) {
     pageProps = Component.getInitialProps(ctx);
   }
 
-  if (jwt) {
-    //User logged in
-    if (ctx.pathname === '/register' || ctx.pathname === '/login') {
+  if (userSession) {
+    //User session found
+    if (
+      ctx.pathname === '/' ||
+      ctx.pathname === '/register' ||
+      ctx.pathname === '/login'
+    ) {
       redirectUser(ctx, '/account');
     }
   } else {
-    //User not logged in
+    //User session not found
     if (ctx.pathname === '/account' || ctx.pathname === '/partner') {
       redirectUser(ctx, '/login');
     }

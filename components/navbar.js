@@ -1,8 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useContext } from 'react';
+import AuthContext from '../stores/authContext';
 
 const Navbar = () => {
+  const { user, onLogout } = useContext(AuthContext);
+
   return (
     <nav>
       <div className='logo'>
@@ -12,18 +15,46 @@ const Navbar = () => {
           </a>
         </Link>
       </div>
-      <Link href='/'>
-        <a>Home</a>
-      </Link>
-      <Link href='/account'>
-        <a>My Profile</a>
-      </Link>
-      <Link href='/about'>
-        <a>About</a>
-      </Link>
-      <Link href='/login'>
-        <a>Login</a>
-      </Link>
+      <ul>
+        <li>
+          <Link href='/'>
+            <a>Home</a>
+          </Link>
+        </li>
+        <li>
+          <Link href='/about'>
+            <a>About</a>
+          </Link>
+        </li>
+        {!user && (
+          <li>
+            <Link href='/login'>
+              <a>Login</a>
+            </Link>
+          </li>
+        )}
+        {!user && (
+          <li>
+            <Link href='/register'>
+              <a>Sign Up</a>
+            </Link>
+          </li>
+        )}
+        {user && (
+          <li>
+            <Link href='/account'>
+              <a>Account</a>
+            </Link>
+          </li>
+        )}
+        {user && (
+          <li onClick={onLogout}>
+            <Link href='/'>
+              <a>Logout</a>
+            </Link>
+          </li>
+        )}
+      </ul>
     </nav>
   );
 };

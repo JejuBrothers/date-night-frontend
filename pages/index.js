@@ -1,8 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 export default function Home() {
   return (
@@ -10,7 +8,7 @@ export default function Home() {
       <Head>
         <title>Date Night | Home</title>
       </Head>
-      <div>
+      <div className='content'>
         <h1 className={styles.title}>Looking for the perfect date plan ?</h1>
         <br />
         <p className={styles.text}>

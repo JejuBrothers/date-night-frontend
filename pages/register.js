@@ -2,10 +2,10 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
 import { Form, Row, Col, Button, Alert, Toast } from 'react-bootstrap';
+import NotificationAlert from 'react-notification-alert';
 import { createAccount } from '../services/account';
-
+import 'react-notification-alert/dist/animate.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const Register = () => {
@@ -16,23 +16,47 @@ const Register = () => {
     handleSubmit,
   } = useForm();
 
-  const onRegister = async (accountInfo) => {
-    const res = await createAccount(accountInfo);
+  var options = {};
+  options = {
+    place: 'tl',
+    message: (
+      <div>
+        <div>
+          Welcome to <b>Now UI Dashboard React</b> - a beautiful freebie for
+          every web developer.
+        </div>
+      </div>
+    ),
+    type: 'danger',
+    icon: 'now-ui-icons ui-1_bell-53',
+    autoDismiss: 7,
+  };
 
-    if (res.hasOwnProperty('id')) {
-      console.log('Account successfully created');
-      router.push('/login');
-    } else {
-      //TODO: Handle error cases
-      console.log('Error');
+  const onRegister = async (accountInfo) => {
+    try {
+      const res = await createAccount(accountInfo);
+      if (res.id && res.id != '') {
+        router.push('/login');
+      } else {
+        //TODO: Handle error cases
+        console.log('Error');
+        this.refs.notificationAlert.notificationAlert(options);
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
   return (
-    <>
+    <div className='content'>
       <Head>
         <title>Date Night | Sign Up</title>
       </Head>
+      <NotificationAlert
+        ref='notificationAlert'
+        zIndex={1031}
+        onClick={() => console.log('hey')}
+      />
       <div className='a-form'>
         <Row>
           <Col md={{ span: 8, offset: 2 }}>
@@ -97,7 +121,7 @@ const Register = () => {
           </Col>
         </Row>
       </div>
-    </>
+    </div>
   );
 };
 

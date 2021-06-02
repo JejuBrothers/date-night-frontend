@@ -6,8 +6,8 @@ const Account = () => {
       <Head>
         <title>Date Night | My profile</title>
       </Head>
-      <div>
-        <h1>My personal information</h1>
+      <div className='content'>
+        <h1>My Profile</h1>
       </div>
     </>
   );

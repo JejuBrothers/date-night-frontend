@@ -6,7 +6,7 @@ const Partner = () => {
       <Head>
         <title>Date Night | Find a partner</title>
       </Head>
-      <div>
+      <div className='content'>
         <h1>Find a partner</h1>
       </div>
     </>

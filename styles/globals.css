@@ -16,7 +16,7 @@ s a {
 }
 
 nav {
-  margin: 10px auto 80px;
+  margin: 10px 30px 80px;
   padding: 10px 0;
   display: flex;
   justify-content: flex-end;
@@ -25,6 +25,21 @@ nav {
 }
 
 nav a {
+  margin-left: 20px;
+  color: #333;
+  text-decoration: none;
+}
+
+nav ul {
+  margin-left: auto;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+nav li {
+  display: inline-block;
   margin-left: 20px;
   text-decoration: none;
 }
