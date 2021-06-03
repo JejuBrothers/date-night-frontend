@@ -4,7 +4,7 @@ import { useState, useContext } from 'react';
 import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
 import { loginAccount } from '../services/account';
 import { setCookie } from 'nookies';
-import AuthContext from '../stores/authContext';
+import AuthContext from '../context/authContext';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const Login = () => {

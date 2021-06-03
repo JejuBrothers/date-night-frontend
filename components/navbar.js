@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useContext } from 'react';
-import AuthContext from '../stores/authContext';
+import AuthContext from '../context/authContext';
 
 const Navbar = () => {
   const { user, onLogout } = useContext(AuthContext);
