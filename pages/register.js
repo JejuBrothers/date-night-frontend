@@ -2,49 +2,83 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Form, Row, Col, Button, Alert, Toast } from 'react-bootstrap';
-import NotificationAlert from 'react-notification-alert';
+import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
 import { createAccount } from '../services/account';
-import 'react-notification-alert/dist/animate.css';
-import 'bootstrap/dist/css/bootstrap.css';
 
 const Register = () => {
   const router = useRouter();
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
-
-  var options = {};
-  options = {
-    place: 'tl',
-    message: (
-      <div>
-        <div>
-          Welcome to <b>Now UI Dashboard React</b> - a beautiful freebie for
-          every web developer.
-        </div>
-      </div>
-    ),
-    type: 'danger',
-    icon: 'now-ui-icons ui-1_bell-53',
-    autoDismiss: 7,
-  };
+  const [validated, setValidated] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [result, setResult] = useState(null);
 
   const onRegister = async (accountInfo) => {
     try {
       const res = await createAccount(accountInfo);
-      if (res.id && res.id != '') {
-        router.push('/login');
-      } else {
-        //TODO: Handle error cases
-        console.log('Error');
-        this.refs.notificationAlert.notificationAlert(options);
-      }
+      setResult(res);
     } catch (err) {
-      console.log(err);
+      setResult(err);
     }
+    setShowAlert(true);
+  };
+
+  const handleSubmit = async (event) => {
+    const form = event.currentTarget;
+    event.preventDefault();
+    if (form.checkValidity() === false) {
+      event.stopPropagation();
+    } else {
+      onRegister({
+        username: formUsername.value,
+        password: formPassword.value,
+        email: formEmail.value,
+      });
+    }
+    setValidated(true);
+  };
+
+  const AlertMessage = () => {
+    if (showAlert) {
+      if (result.id && result.id != '') {
+        return (
+          <Alert show={showAlert} variant='success'>
+            <p>Your account has been successfully registered!</p>
+            <hr />
+            <div className='d-flex justify-content-end'>
+              <Button
+                onClick={() => {
+                  router.push('/login');
+                  setShowAlert(false);
+                  setValidated(false);
+                }}
+                variant='outline-success'>
+                Login
+              </Button>
+            </div>
+          </Alert>
+        );
+      } else {
+        return (
+          <Alert show={showAlert} variant='danger'>
+            <p>
+              An unexpected error occurred. Please verify that your information
+              are correct and try again.
+            </p>
+            <hr />
+            <div className='d-flex justify-content-end'>
+              <Button
+                onClick={() => {
+                  setShowAlert(false);
+                  setValidated(false);
+                }}
+                variant='outline-danger'>
+                Retry
+              </Button>
+            </div>
+          </Alert>
+        );
+      }
+    }
+    return null;
   };
 
   return (
@@ -52,74 +86,58 @@ const Register = () => {
       <Head>
         <title>Date Night | Sign Up</title>
       </Head>
-      <NotificationAlert
-        ref='notificationAlert'
-        zIndex={1031}
-        onClick={() => console.log('hey')}
-      />
+
       <div className='a-form'>
-        <Row>
-          <Col md={{ span: 8, offset: 2 }}>
-            <h1>Create your account</h1>
-            <br />
-            <Form onSubmit={handleSubmit(onRegister)}>
-              <Form.Group controlId='formUsername'>
-                <Form.Label>Username</Form.Label>
-                <Form.Control
-                  type='text'
-                  placeholder='Enter username'
-                  {...register('username', {
-                    required: 'Required',
-                  })}
-                />
-                {errors?.username && (
-                  <Alert variant='info'>
-                    {errors.username.type === 'required' &&
-                      'Your username is required!'}
-                  </Alert>
-                )}
-              </Form.Group>
-              <br />
-              <Form.Group controlId='formEmail'>
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type='email'
-                  placeholder='Enter email'
-                  {...register('email', {
-                    required: 'Required',
-                  })}
-                />
-                {errors?.email && (
-                  <Alert variant='info'>
-                    {errors.email.type === 'required' &&
-                      'Your email is required!'}
-                  </Alert>
-                )}
-              </Form.Group>
-              <br />
-              <Form.Group controlId='formPassword'>
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type='password'
-                  placeholder='Enter password'
-                  {...register('password', {
-                    required: 'Required',
-                  })}
-                />
-                {errors?.password && (
-                  <Alert variant='info'>
-                    {errors.password.type === 'required' &&
-                      'Your password is required!'}
-                  </Alert>
-                )}
-              </Form.Group>
+        <Col md={{ span: 8, offset: 2 }}>
+          <h1>Create your account</h1>
+          <br />
+          <AlertMessage />
+          {!showAlert && (
+            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+              <Form.Row>
+                <Form.Group controlId='formUsername'>
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control
+                    required
+                    type='text'
+                    placeholder='Enter your username'
+                  />
+                  <Form.Control.Feedback type='invalid'>
+                    Please enter an username.
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <br />
+                <Form.Group controlId='formEmail'>
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    required
+                    type='email'
+                    placeholder='Enter your email'
+                  />
+                  <Form.Control.Feedback type='invalid'>
+                    Please enter a valid email address.
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <br />
+                <Form.Group controlId='formPassword'>
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    required
+                    type='password'
+                    placeholder='Enter your password'
+                  />
+                  <Form.Control.Feedback type='invalid'>
+                    Please enter a password.
+                  </Form.Control.Feedback>
+                </Form.Group>
+              </Form.Row>
               <br />
               <Button variant='primary' type='submit'>
                 Sign up
               </Button>
             </Form>
-          </Col>
-        </Row>
+          )}
+        </Col>
       </div>
     </div>
   );

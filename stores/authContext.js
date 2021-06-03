@@ -20,7 +20,7 @@ export const AuthContextProvider = ({ children }) => {
     //Set JWT into browser cookie
     setUser(userSession);
     setCookie(null, 'userSession', userSession.access_token, {
-      maxAge: 30 * 24 * 60 * 60, //Temporary set to 30 days
+      maxAge: 30 * 24 * 60 * 60, //Temporary: set to 30 days
       path: '/',
     });
   };

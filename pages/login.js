@@ -11,24 +11,52 @@ import 'bootstrap/dist/css/bootstrap.css';
 const Login = () => {
   const router = useRouter();
   const { onLogin } = useContext(AuthContext);
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
+  const [validated, setValidated] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [result, setResult] = useState(null);
 
   const login = async (accountInfo) => {
     try {
       const res = await loginAccount(accountInfo);
+      setResult(res);
       if (res.access_token && res.access_token != '') {
         onLogin(res);
         router.push('/account'); //Temporary: Redirect user to his profile page after login
       } else {
-        console.log('Error'); //TODO: Handle error cases
+        setShowAlert(true);
       }
     } catch (err) {
-      console.log(err);
+      setResult(err);
+      setShowAlert(true);
     }
+  };
+
+  const handleSubmit = async (event) => {
+    const form = event.currentTarget;
+    event.preventDefault();
+    if (form.checkValidity() === false) {
+      event.stopPropagation();
+    } else {
+      login({
+        username: formUsername.value,
+        password: formPassword.value,
+      });
+    }
+    setValidated(true);
+  };
+
+  const AlertMessage = () => {
+    if (showAlert) {
+      return (
+        <Alert show={showAlert} variant='danger'>
+          <p>
+            Incorrect username or password. <br />
+            Please verify that your information are correct and try again.
+          </p>
+        </Alert>
+      );
+    }
+    return null;
   };
 
   return (
@@ -37,51 +65,42 @@ const Login = () => {
         <title>Date Night | Login</title>
       </Head>
       <div className='a-form'>
-        <Row>
-          <Col md={{ span: 8, offset: 2 }}>
-            <h1>Sign in to your account</h1>
-            <br />
-            <Form onSubmit={handleSubmit(login)}>
+        <Col md={{ span: 8, offset: 2 }}>
+          <h1>Create your account</h1>
+          <br />
+          <AlertMessage />
+          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form.Row>
               <Form.Group controlId='formUsername'>
                 <Form.Label>Username</Form.Label>
                 <Form.Control
+                  required
                   type='text'
-                  placeholder='Enter username'
-                  {...register('username', {
-                    required: 'Required',
-                  })}
+                  placeholder='Enter your username'
                 />
-                {errors?.username && (
-                  <Alert variant='info'>
-                    {errors.username.type === 'required' &&
-                      'Your username is required!'}
-                  </Alert>
-                )}
+                <Form.Control.Feedback type='invalid'>
+                  Please enter an username.
+                </Form.Control.Feedback>
               </Form.Group>
               <br />
               <Form.Group controlId='formPassword'>
                 <Form.Label>Password</Form.Label>
                 <Form.Control
+                  required
                   type='password'
-                  placeholder='Enter password'
-                  {...register('password', {
-                    required: 'Required',
-                  })}
+                  placeholder='Enter your password'
                 />
-                {errors?.password && (
-                  <Alert variant='info'>
-                    {errors.password.type === 'required' &&
-                      'Your password is required!'}
-                  </Alert>
-                )}
+                <Form.Control.Feedback type='invalid'>
+                  Please enter a password.
+                </Form.Control.Feedback>
               </Form.Group>
-              <br />
-              <Button variant='primary' type='submit'>
-                Login
-              </Button>
-            </Form>
-          </Col>
-        </Row>
+            </Form.Row>
+            <br />
+            <Button variant='primary' type='submit'>
+              Sign up
+            </Button>
+          </Form>
+        </Col>
       </div>
     </div>
   );
