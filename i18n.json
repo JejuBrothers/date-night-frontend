@@ -1,0 +1,13 @@
+{ 
+    "locales": ["en-US"], 
+    "defaultLocale": "en-US",
+    "pages": {
+        "*": ["common"],
+        "/": ["home"],
+        "/about": ["about"],
+        "/account": ["account"],
+        "/login": ["login"],
+        "/register": ["register"],
+        "/partner": ["partner"]
+    }
+}

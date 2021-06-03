@@ -3,9 +3,11 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
 import { createAccount } from '../services/account';
+import useTranslation from 'next-translate/useTranslation';
 
 const Register = () => {
   const router = useRouter();
+  const { t } = useTranslation();
   const [validated, setValidated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [result, setResult] = useState(null);
@@ -40,7 +42,7 @@ const Register = () => {
       if (result.id && result.id != '') {
         return (
           <Alert show={showAlert} variant='success'>
-            <p>Your account has been successfully registered!</p>
+            <p>{t('register:form_signup_success')}</p>
             <hr />
             <div className='d-flex justify-content-end'>
               <Button
@@ -50,7 +52,7 @@ const Register = () => {
                   setValidated(false);
                 }}
                 variant='outline-success'>
-                Login
+                {t('register:button_login')}
               </Button>
             </div>
           </Alert>
@@ -58,10 +60,7 @@ const Register = () => {
       } else {
         return (
           <Alert show={showAlert} variant='danger'>
-            <p>
-              An unexpected error occurred. Please verify that your information
-              are correct and try again.
-            </p>
+            <p>{t('register:form_signup_error')}</p>
             <hr />
             <div className='d-flex justify-content-end'>
               <Button
@@ -70,7 +69,7 @@ const Register = () => {
                   setValidated(false);
                 }}
                 variant='outline-danger'>
-                Retry
+                {t('register:button_retry')}
               </Button>
             </div>
           </Alert>
@@ -83,56 +82,56 @@ const Register = () => {
   return (
     <div className='content'>
       <Head>
-        <title>Date Night | Sign Up</title>
+        <title>{t('register:title')}</title>
       </Head>
 
       <div className='a-form'>
         <Col md={{ span: 8, offset: 2 }}>
-          <h1>Create your account</h1>
+          <h1>{t('register:content_title')}</h1>
           <br />
           <AlertMessage />
           {!showAlert && (
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
               <Form.Row>
                 <Form.Group controlId='formUsername'>
-                  <Form.Label>Username</Form.Label>
+                  <Form.Label>{t('register:form_username')}</Form.Label>
                   <Form.Control
                     required
                     type='text'
-                    placeholder='Enter your username'
+                    placeholder={t('register:form_username_placeholder')}
                   />
                   <Form.Control.Feedback type='invalid'>
-                    Please enter an username.
+                    {t('register:form_username_invalid')}
                   </Form.Control.Feedback>
                 </Form.Group>
                 <br />
                 <Form.Group controlId='formEmail'>
-                  <Form.Label>Email</Form.Label>
+                  <Form.Label>{t('register:form_email')}</Form.Label>
                   <Form.Control
                     required
                     type='email'
-                    placeholder='Enter your email'
+                    placeholder={t('register:form_email_placeholder')}
                   />
                   <Form.Control.Feedback type='invalid'>
-                    Please enter a valid email address.
+                    {t('register:form_email_invalid')}
                   </Form.Control.Feedback>
                 </Form.Group>
                 <br />
                 <Form.Group controlId='formPassword'>
-                  <Form.Label>Password</Form.Label>
+                  <Form.Label> {t('register:form_password')}</Form.Label>
                   <Form.Control
                     required
                     type='password'
-                    placeholder='Enter your password'
+                    placeholder={t('register:form_password_placeholder')}
                   />
                   <Form.Control.Feedback type='invalid'>
-                    Please enter a password.
+                    {t('register:form_password_invalid')}
                   </Form.Control.Feedback>
                 </Form.Group>
               </Form.Row>
               <br />
               <Button variant='primary' type='submit'>
-                Sign up
+                {t('register:button_signup')}
               </Button>
             </Form>
           )}

@@ -1,5 +1,8 @@
+import useTranslation from 'next-translate/useTranslation';
+
 const Footer = () => {
-  return <footer>Date Night - 2021</footer>;
+  const { t } = useTranslation();
+  return <footer>{t('common:footer_copyright')}</footer>;
 };
 
 export default Footer;
