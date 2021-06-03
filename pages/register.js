@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
 import { createAccount } from '../services/account';
 

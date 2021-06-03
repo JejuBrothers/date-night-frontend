@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState, useContext } from 'react';
-import { useForm } from 'react-hook-form';
 import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
 import { loginAccount } from '../services/account';
 import { setCookie } from 'nookies';
@@ -66,7 +65,7 @@ const Login = () => {
       </Head>
       <div className='a-form'>
         <Col md={{ span: 8, offset: 2 }}>
-          <h1>Create your account</h1>
+          <h1>Sign in to your account</h1>
           <br />
           <AlertMessage />
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
