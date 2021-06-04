@@ -13,10 +13,10 @@ const About = () => {
         <h1 className={styles.title}>{t('about:content_title')}</h1>
         <br />
         <p className={styles.text}>{t('about:content_text')}</p>
+        <a href='https://github.com/JejuBrothers'>
+          <img src='/github_logo.png' alt='github' className='github-logo' />
+        </a>
       </div>
-      <a href='https://github.com/JejuBrothers'>
-        <img src='/github.png' alt='github' className='github-logo' />
-      </a>
     </>
   );
 };
