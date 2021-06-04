@@ -2,11 +2,10 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState, useContext } from 'react';
 import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
-import { loginAccount } from '../services/account';
+import { loginAccount } from '@/services/account';
 import { setCookie } from 'nookies';
-import AuthContext from '../context/authContext';
+import AuthContext from '@/context/authContext';
 import useTranslation from 'next-translate/useTranslation';
-import 'bootstrap/dist/css/bootstrap.css';
 
 const Login = () => {
   const router = useRouter();

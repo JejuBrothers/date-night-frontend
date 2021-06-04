@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useContext } from 'react';
-import AuthContext from '../context/authContext';
+import AuthContext from '@/context/authContext';
 import useTranslation from 'next-translate/useTranslation';
 
 const Navbar = () => {

@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
-import { createAccount } from '../services/account';
+import { createAccount } from '@/services/account';
 import useTranslation from 'next-translate/useTranslation';
 
 const Register = () => {
