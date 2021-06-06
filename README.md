@@ -3,7 +3,7 @@
 
 Date Night WebApp implementation using Next.js / TailwindCSS
 
-![preview](https://github.com/JejuBrothers/date-night-frontend/blob/feature/tailwindcss/images/date_night_preview.png)
+![preview](https://github.com/JejuBrothers/date-night-frontend/blob/main/images/date_night_preview.png)
 
 ## Installation
 
