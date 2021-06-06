@@ -1,7 +1,7 @@
-const MenuCorner = () => {
+const Corner = () => {
   return (
     <a
-      href='https://github.com/JejuBrothers/date-night-frontend'
+      href='https://github.com/JejuBrothers'
       className='github-corner'
       aria-label='View source on GitHub'>
       <svg
@@ -26,4 +26,4 @@ const MenuCorner = () => {
   );
 };
 
-export default MenuCorner;
+export default Corner;
