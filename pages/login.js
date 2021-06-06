@@ -34,13 +34,13 @@ const Login = () => {
     if (showAlert) {
       return (
         <div
-          class='bg-pink-100 border-2 border-pink-400 text-pink-700 px-4 py-3 rounded relative'
+          className='bg-pink-100 border-2 border-pink-400 text-pink-700 px-4 py-3 rounded relative'
           role='alert'>
-          <span class='block'> {t('login:form_signin_error')}</span>
-          <span class='absolute top-0 bottom-0 right-0 px-4 py-3'>
+          <span className='block'>{t('login:form_signin_error')}</span>
+          <span className='absolute top-0 bottom-0 right-0 px-4 py-3'>
             <svg
               onClick={() => setShowAlert(false)}
-              class='fill-current h-6 w-6 text-red-500'
+              className='fill-current h-6 w-6 text-red-500'
               role='button'
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 20 20'>

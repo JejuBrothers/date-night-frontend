@@ -1,18 +1,18 @@
-import Head from 'next/head';
-import styles from '@/styles/Home.module.css';
+import Layout from '@/components/Layout';
 import useTranslation from 'next-translate/useTranslation';
 
 const Partner = () => {
   const { t } = useTranslation();
   return (
-    <>
-      <Head>
-        <title>{t('partner:title')}</title>
-      </Head>
-      <div className='content'>
-        <h1 className={styles.title}>{t('partner:content_title')}</h1>
+    <Layout title={t('partner:title')}>
+      <div className='container mx-auto py-12 px-4 px-6 py-16 px-8 items-center'>
+        <h2 className='space-y-3'>
+          <span className='block font-bold text-4xl text-center text-pink-600'>
+            {t('partner:content_title')}
+          </span>
+        </h2>
       </div>
-    </>
+    </Layout>
   );
 };
 
