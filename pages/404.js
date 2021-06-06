@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Head from 'next/head';
 import Layout from '@/components/Layout';
 import useTranslation from 'next-translate/useTranslation';
 
@@ -17,7 +16,7 @@ const PageNotFound = () => {
           </span>
         </h2>
         <div className='pt-10 text-center'>
-          <Link href='/register'>
+          <Link href='/'>
             <a className='px-5 py-3 font-bold rounded-md text-gray-800 bg-pink-500 hover:bg-pink-700'>
               {t('common:content_not_found_homepage')}
             </a>

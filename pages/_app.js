@@ -2,8 +2,6 @@ import Router from 'next/router';
 import { parseCookies } from 'nookies';
 import { AuthContextProvider } from '@/context/authContext';
 import '@/styles/index.css';
-// import '@/styles/globals.css';
-// import 'bootstrap/dist/css/bootstrap.css';
 
 function MyApp({ Component, pageProps }) {
   return (
