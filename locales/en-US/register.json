@@ -2,17 +2,10 @@
     "title": "Date Night | Sign Up",
     "content_title": "Create your account",
     "form_username": "Username",
-    "form_username_placeholder": "Enter your username",
-    "form_username_invalid": "Please enter an username.",
     "form_email": "Email",
-    "form_email_placeholder": "Enter your email",
-    "form_email_invalid": "Please enter a valid email.",
     "form_password": "Password",
-    "form_password_placeholder": "Enter your password",
-    "form_password_invalid": "Please enter a password.",
-    "form_signup_error": "An unexpected error occurred. Please verify that your information are correct and try again.",
-    "form_signup_success": "Your account has been successfully registered!",
-    "button_signup": "Sign Up",
-    "button_retry": "Retry",
-    "button_login": "Login"
+    "form_confirm_password": "Confirm Password",
+    "form_signup_error": "Please verify that your information are correct.",
+    "form_signup_success": "Your account has been successfully created!",
+    "button_signup": "Sign Up"
 }

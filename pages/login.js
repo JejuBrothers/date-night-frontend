@@ -73,22 +73,22 @@ const Login = () => {
           </h2>
           <AlertMessage />
           <form className='mt-10 space-y-6' onSubmit={handleSubmit}>
-            <div className='rounded-md'>
+            <div className='rounded-md space-y-3'>
               <input
                 id='username'
                 name='username'
                 type='text'
                 required
-                className='w-full px-3 py-2 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-pink-500 focus:border-pink-500'
-                placeholder={t('login:form_username_placeholder')}
+                className='w-full px-3 py-2 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-pink-500 focus:border-pink-500'
+                placeholder={t('login:form_username')}
               />
               <input
                 id='password'
                 name='password'
                 type='password'
                 required
-                className='w-full px-3 py-2 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-pink-500 focus:border-pink-500'
-                placeholder={t('login:form_password_placeholder')}
+                className='w-full px-3 py-2 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-pink-500 focus:border-pink-500'
+                placeholder={t('login:form_password')}
               />
             </div>
             <div>

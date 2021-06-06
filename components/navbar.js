@@ -10,15 +10,17 @@ const Navbar = () => {
   return (
     <nav>
       <div className='container mx-auto px-6 py-5 pb-5 flex justify-between items-center border-b-2 border-pink-700'>
-        <div className='flex px-6 mb-2'>
-          <a className='text-pink-700 font-bold text-2xl lg:text-4xl'>
-            {t('common:title_date')}
-          </a>
-          <img className='w-10 h-10' src='/wine.png' alt='logo' />
-          <a className='text-pink-700 font-bold text-2xl lg:text-4xl'>
-            {t('common:title_night')}
-          </a>
-        </div>
+        <Link href='/'>
+          <div className='flex px-6 mb-2'>
+            <a className='text-pink-700 font-bold text-2xl lg:text-4xl'>
+              {t('common:title_date')}
+            </a>
+            <img className='w-10 h-10' src='/wine.png' alt='logo' />
+            <a className='text-pink-700 font-bold text-2xl lg:text-4xl'>
+              {t('common:title_night')}
+            </a>
+          </div>
+        </Link>
         <div className='block'>
           <ul className='inline-flex space-x-5 justify-between'>
             {!user && (
