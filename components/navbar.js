@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { useContext } from 'react';
 import AuthContext from '@/context/authContext';
 import useTranslation from 'next-translate/useTranslation';
@@ -22,13 +21,24 @@ const Navbar = () => {
         </div>
         <div className='block'>
           <ul className='inline-flex space-x-5 justify-between'>
-            <li>
-              <Link href='/'>
-                <a className='px-4 font-medium text-gray-200 hover:bg-gray-700 py-2 rounded-md'>
-                  {t('common:navbar_home')}
-                </a>
-              </Link>
-            </li>
+            {!user && (
+              <li>
+                <Link href='/'>
+                  <a className='px-4 font-medium text-gray-200 hover:bg-gray-700 py-2 rounded-md'>
+                    {t('common:navbar_home')}
+                  </a>
+                </Link>
+              </li>
+            )}
+            {user && (
+              <li>
+                <Link href='/account'>
+                  <a className='px-4 font-medium text-gray-200 hover:bg-gray-700 py-2 rounded-md'>
+                    {t('common:navbar_account')}
+                  </a>
+                </Link>
+              </li>
+            )}
             <li>
               <Link href='/team'>
                 <a className='px-4 font-medium text-gray-200 hover:bg-gray-700 py-2 rounded-md'>
@@ -48,15 +58,6 @@ const Navbar = () => {
                 <Link href='/login'>
                   <a className='px-4 py-2 font-bold text-gray-800 bg-pink-500 hover:bg-pink-700 rounded-md'>
                     {t('common:navbar_signin')}
-                  </a>
-                </Link>
-              </li>
-            )}
-            {user && (
-              <li>
-                <Link href='/account'>
-                  <a className='px-4 font-medium text-gray-200 hover:bg-gray-700 py-2 rounded-md'>
-                    {t('common:navbar_account')}
                   </a>
                 </Link>
               </li>

@@ -5,7 +5,7 @@ const About = () => {
   const { t } = useTranslation();
   return (
     <Layout title={t('about:title')}>
-      <div className='container mx-auto py-12 px-4 px-6 py-16 px-8 justify-between'>
+      <div className='container mx-auto py-12 px-4 px-6 py-16 px-8 items-center'>
         <h2 className='space-y-3'>
           <span className='block font-bold text-4xl text-center text-pink-600'>
             {t('about:content_title')}
