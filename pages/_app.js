@@ -1,17 +1,12 @@
 import Router from 'next/router';
 import { parseCookies } from 'nookies';
-import { AuthContextProvider } from '../context/authContext';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import '../styles/globals.css';
-import 'bootstrap/dist/css/bootstrap.css';
+import { AuthContextProvider } from '@/context/authContext';
+import '@/styles/index.css';
 
 function MyApp({ Component, pageProps }) {
   return (
     <AuthContextProvider>
-      <Navbar />
       <Component {...pageProps} />
-      <Footer />
     </AuthContextProvider>
   );
 }

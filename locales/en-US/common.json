@@ -1,14 +1,15 @@
 {
+    "title_date": "Date",
+    "title_night": "Night",
     "navbar_home": "Home",
+    "navbar_team": "Team",
     "navbar_about": "About",
-    "navbar_account": "Account",
+    "navbar_account": "My Account",
     "navbar_signin": "Sign In",
-    "navbar_signup": "Sign Up",
     "navbar_logout": "Logout",
-    "footer_copyright": "Date Night - 2021",
+    "footer_copyright": "2021 - Date Night by Jeju Brothers",
     "title_not_found": "Date Night | Page not found",
     "content_not_found": "Ooooops...",
     "content_not_found_notice": "That page cannot be found.",
-    "content_not_found_return": "Go back to the ",
     "content_not_found_homepage": "Homepage"
 }

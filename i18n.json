@@ -8,6 +8,7 @@
         "/account": ["account"],
         "/login": ["login"],
         "/register": ["register"],
-        "/partner": ["partner"]
+        "/partner": ["partner"],
+        "/team": ["team"]
     }
 }
