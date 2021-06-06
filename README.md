@@ -1,6 +1,9 @@
 ## Description
 
-Date Night frontend implementation using Next.js
+
+Date Night WebApp implementation using Next.js / TailwindCSS
+
+![preview](https://github.com/JejuBrothers/date-night-frontend/blob/feature/tailwindcss/images/date_night_preview.png)
 
 ## Installation
 
