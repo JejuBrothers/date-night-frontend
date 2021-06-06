@@ -5,10 +5,12 @@ import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
 import { loginAccount } from '../services/account';
 import { setCookie } from 'nookies';
 import AuthContext from '../context/authContext';
+import useTranslation from 'next-translate/useTranslation';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const Login = () => {
   const router = useRouter();
+  const { t } = useTranslation();
   const { onLogin } = useContext(AuthContext);
   const [validated, setValidated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -49,8 +51,8 @@ const Login = () => {
       return (
         <Alert show={showAlert} variant='danger'>
           <p>
-            Incorrect username or password. <br />
-            Please verify that your information are correct and try again.
+            {t('login:form_signin_error')} <br />
+            {t('login:form_signin_retry')}
           </p>
         </Alert>
       );
@@ -61,42 +63,42 @@ const Login = () => {
   return (
     <div className='content'>
       <Head>
-        <title>Date Night | Login</title>
+        <title>{t('login:title')}</title>
       </Head>
       <div className='a-form'>
         <Col md={{ span: 8, offset: 2 }}>
-          <h1>Sign in to your account</h1>
+          <h1>{t('login:content_title')}</h1>
           <br />
           <AlertMessage />
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Row>
               <Form.Group controlId='formUsername'>
-                <Form.Label>Username</Form.Label>
+                <Form.Label>{t('login:form_username')}</Form.Label>
                 <Form.Control
                   required
                   type='text'
-                  placeholder='Enter your username'
+                  placeholder={t('login:form_username_placeholder')}
                 />
                 <Form.Control.Feedback type='invalid'>
-                  Please enter an username.
+                  {t('login:form_username_invalid')}
                 </Form.Control.Feedback>
               </Form.Group>
               <br />
               <Form.Group controlId='formPassword'>
-                <Form.Label>Password</Form.Label>
+                <Form.Label>{t('login:form_password')}</Form.Label>
                 <Form.Control
                   required
                   type='password'
-                  placeholder='Enter your password'
+                  placeholder={t('login:form_password_placeholder')}
                 />
                 <Form.Control.Feedback type='invalid'>
-                  Please enter a password.
+                  {t('login:form_password_invalid')}
                 </Form.Control.Feedback>
               </Form.Group>
             </Form.Row>
             <br />
             <Button variant='primary' type='submit'>
-              Sign up
+              {t('login:button_signin')}
             </Button>
           </Form>
         </Col>

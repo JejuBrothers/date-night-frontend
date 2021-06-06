@@ -2,10 +2,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useContext } from 'react';
 import AuthContext from '../context/authContext';
+import useTranslation from 'next-translate/useTranslation';
 
 const Navbar = () => {
   const { user, onLogout } = useContext(AuthContext);
-
+  const { t } = useTranslation();
   return (
     <nav>
       <div className='logo'>
@@ -18,39 +19,39 @@ const Navbar = () => {
       <ul>
         <li>
           <Link href='/'>
-            <a>Home</a>
+            <a>{t('common:navbar_home')}</a>
           </Link>
         </li>
         <li>
           <Link href='/about'>
-            <a>About</a>
+            <a>{t('common:navbar_about')}</a>
           </Link>
         </li>
         {!user && (
           <li>
             <Link href='/login'>
-              <a>Login</a>
+              <a>{t('common:navbar_signin')}</a>
             </Link>
           </li>
         )}
         {!user && (
           <li>
             <Link href='/register'>
-              <a>Sign Up</a>
+              <a>{t('common:navbar_signup')}</a>
             </Link>
           </li>
         )}
         {user && (
           <li>
             <Link href='/account'>
-              <a>Account</a>
+              <a>{t('common:navbar_account')}</a>
             </Link>
           </li>
         )}
         {user && (
           <li onClick={onLogout}>
             <Link href='/'>
-              <a>Logout</a>
+              <a>{t('common:navbar_logout')}</a>
             </Link>
           </li>
         )}

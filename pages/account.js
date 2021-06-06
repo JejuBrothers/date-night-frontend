@@ -1,13 +1,16 @@
 import Head from 'next/head';
+import styles from '../styles/Home.module.css';
+import useTranslation from 'next-translate/useTranslation';
 
 const Account = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Head>
-        <title>Date Night | My profile</title>
+        <title>{t('account:title')}</title>
       </Head>
       <div className='content'>
-        <h1>My Profile</h1>
+        <h1 className={styles.title}>{t('account:content_title')}</h1>
       </div>
     </>
   );

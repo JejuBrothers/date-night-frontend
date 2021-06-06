@@ -1,25 +1,22 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+import useTranslation from 'next-translate/useTranslation';
 
 const About = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Head>
-        <title>Date Night | About</title>
+        <title>{t('about:title')}</title>
       </Head>
       <div className='content'>
-        <h1 className={styles.title}>About Date Night</h1>
+        <h1 className={styles.title}>{t('about:content_title')}</h1>
         <br />
-        <p className={styles.text}>
-          Date Night is a mini project currently being developed by
-          JejuBrothers' team.
-        </p>
-        <p className={styles.text}>
-          The source code can be found on{' '}
-          <a href='https://github.com/JejuBrothers'>GitHub</a>
-        </p>
-        <br />
+        <p className={styles.text}>{t('about:content_text')}</p>
       </div>
+      <a href='https://github.com/JejuBrothers'>
+        <img src='/github.png' alt='github' className='github-logo' />
+      </a>
     </>
   );
 };

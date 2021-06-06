@@ -1,0 +1,13 @@
+{
+    "title": "Date Night | Login",
+    "content_title": "Sign in to your account",
+    "form_username": "Username",
+    "form_username_placeholder": "Enter your username",
+    "form_username_invalid": "Please enter an username.",
+    "form_password": "Password",
+    "form_password_placeholder": "Enter your password",
+    "form_password_invalid": "Please enter a password.",
+    "form_signin_error": "Incorrect username or password.",
+    "form_signin_retry": "Please verify that your information are correct and try again.",
+    "button_signin": "Sign In"
+}
