@@ -34,20 +34,13 @@ const Navbar = () => {
             )}
             {user && (
               <li>
-                <Link href='/account'>
+                <Link href='/profile'>
                   <a className='px-4 font-medium text-gray-200 hover:bg-gray-700 py-2 rounded-md'>
-                    {t('common:navbar_account')}
+                    {t('common:navbar_profile')}
                   </a>
                 </Link>
               </li>
             )}
-            <li>
-              <Link href='/team'>
-                <a className='px-4 font-medium text-gray-200 hover:bg-gray-700 py-2 rounded-md'>
-                  {t('common:navbar_team')}
-                </a>
-              </Link>
-            </li>
             <li>
               <Link href='/about'>
                 <a className='px-4 font-medium text-gray-200 hover:bg-gray-700 py-2 rounded-md'>

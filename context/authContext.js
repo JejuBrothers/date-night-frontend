@@ -19,10 +19,18 @@ export const AuthContextProvider = ({ children }) => {
   const onLogin = (userSession) => {
     //Set JWT into browser cookie
     setUser(userSession);
-    setCookie(null, 'userSession', userSession.access_token, {
-      maxAge: 30 * 24 * 60 * 60, //Temporary: set to 30 days
-      path: '/',
-    });
+    setCookie(
+      null,
+      'userSession',
+      JSON.stringify({
+        username: userSession.username,
+        jwt: userSession.access_token,
+      }),
+      {
+        maxAge: 10000, //Set same expiration time as server
+        path: '/',
+      },
+    );
   };
 
   const onLogout = () => {

@@ -6,7 +6,7 @@ export default function Home() {
   const { t } = useTranslation();
   return (
     <Layout title={t('home:title')}>
-      <div className='container mx-auto py-12 px-4 px-6 py-16 px-8 justify-between'>
+      <div className='container mx-auto py-16 px-8 justify-between'>
         <div className='space-x-10 flex justify-between items-center'>
           <div className='inline-block'>
             <h2 className='space-y-3 font-bold tracking-tight text-gray-200 text-4xl'>
