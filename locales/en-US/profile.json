@@ -1,0 +1,14 @@
+{
+    "title": "Date Night | Profile",
+    "content_title": "Profile",
+    "partner_title": "Partner",
+    "partner_find": "Find a Partner",
+    "partner_none": "doesn't have a partner yet.",
+    "partner_pending": "has a partnership request pending.",
+    "partner_exist": "has already a partner.",
+    "search_result": "Result:",
+    "search_not_found": "User not found.",
+    "request_pending": " Request pending...",
+    "button_search": "Search",
+    "button_request": "Request"
+}

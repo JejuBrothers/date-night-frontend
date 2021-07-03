@@ -5,10 +5,9 @@
         "*": ["common"],
         "/": ["home"],
         "/about": ["about"],
-        "/account": ["account"],
+        "/profile": ["profile"],
         "/login": ["login"],
         "/register": ["register"],
-        "/partner": ["partner"],
-        "/team": ["team"]
+        "/guest": ["guest"]
     }
 }

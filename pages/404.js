@@ -6,7 +6,7 @@ const PageNotFound = () => {
   const { t } = useTranslation();
   return (
     <Layout title={t('common:title_not_found')}>
-      <div className='container mx-auto py-12 px-4 px-6 py-16 px-8 justify-between'>
+      <div className='container mx-auto py-16 px-8 justify-between'>
         <h2 className='space-y-3 text-4xl'>
           <span className='block font-bold text-center text-pink-600 '>
             {t('common:content_not_found')}

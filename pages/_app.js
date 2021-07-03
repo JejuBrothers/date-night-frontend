@@ -22,24 +22,28 @@ function redirectUser(ctx, location) {
 
 MyApp.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {};
-  const userSession = parseCookies(ctx).userSession;
+  let userSession = {};
+
+  try {
+    userSession = JSON.parse(parseCookies(ctx).userSession);
+  } catch (e) {}
 
   if (Component.getInitialProps) {
     pageProps = Component.getInitialProps(ctx);
   }
 
-  if (userSession) {
-    //User session found
+  if (userSession && userSession.jwt) {
+    //userSession && jwt found
     if (
       ctx.pathname === '/' ||
       ctx.pathname === '/register' ||
       ctx.pathname === '/login'
     ) {
-      redirectUser(ctx, '/account');
+      redirectUser(ctx, '/profile');
     }
   } else {
-    //User session not found
-    if (ctx.pathname === '/account' || ctx.pathname === '/partner') {
+    //userSession or jwt not found
+    if (ctx.pathname === '/profile' || ctx.pathname === '/partner') {
       redirectUser(ctx, '/login');
     }
   }

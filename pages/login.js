@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState, useContext } from 'react';
-import { loginAccount } from '@/services/account';
+import { loginAccount } from '@/services/auth';
 import { setCookie } from 'nookies';
-
 import Layout from '@/components/Layout';
 import AuthContext from '@/context/authContext';
 import useTranslation from 'next-translate/useTranslation';
@@ -17,10 +16,10 @@ const Login = () => {
   const login = async (accountInfo) => {
     try {
       const res = await loginAccount(accountInfo);
-      setResult(res);
       if (res.access_token && res.access_token != '') {
+        res.username = accountInfo.username;
         onLogin(res);
-        router.push('/account'); //Temporary: Redirect user to his profile page after login
+        router.push('/profile'); //Temporary: Redirect user to his profile page after login
       } else {
         setShowAlert(true);
       }
@@ -64,7 +63,7 @@ const Login = () => {
 
   return (
     <Layout title={t('login:title')}>
-      <div className='container mx-auto py-12 px-4 px-6 py-16 px-8 flex items-center justify-center'>
+      <div className='container mx-auto py-16 px-8 flex items-center justify-center'>
         <div className='max-w-md w-full space-y-8'>
           <h2 className='space-y-3'>
             <span className='block font-bold text-4xl text-center text-pink-600'>

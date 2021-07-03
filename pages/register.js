@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createAccount } from '@/services/account';
+import { createAccount } from '@/services/auth';
 import Layout from '@/components/Layout';
 import useTranslation from 'next-translate/useTranslation';
 
@@ -67,7 +67,7 @@ const Register = () => {
 
   return (
     <Layout title={t('register:title')}>
-      <div className='container mx-auto py-12 px-4 px-6 py-16 px-8 flex items-center justify-center'>
+      <div className='container mx-auto py-16 px-8 flex items-center justify-center'>
         <div className='max-w-md w-full space-y-8'>
           <h2 className='space-y-3'>
             <span className='block font-bold text-4xl text-center text-pink-600'>
